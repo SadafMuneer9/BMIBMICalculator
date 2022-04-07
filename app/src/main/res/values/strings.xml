@@ -12,8 +12,8 @@
     <string name="textview">TextView</string>
     <string name="bmi">BMI</string>
     <string name="weight_kg">Weight (Kg)</string>
-    <string name="enter_your_weight">Enter your Weight</string>
-    <string name="height_cm">Height (Cm)</string>
+    <string name="enter_your_weight">Enter your Name</string>
+    <string name="height_cm">Height (Mt)</string>
     <string name="enter_your_height">Enter your Height</string>
     <string name="Calculate">Calculate</string>
     <string name="result">Result</string>
