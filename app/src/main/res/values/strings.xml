@@ -17,4 +17,5 @@
     <string name="enter_your_height">Enter your Height</string>
     <string name="Calculate">Calculate</string>
     <string name="result">Result</string>
+    <string name="recalculate">Recalculate</string>
 </resources>
