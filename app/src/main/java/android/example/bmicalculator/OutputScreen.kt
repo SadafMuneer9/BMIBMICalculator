@@ -52,11 +52,12 @@ class OutputScreen : AppCompatActivity() {
             bmiStatus = "Normal"
         }
         else if (bmi >= 25 && bmi < 30) {
-            imageView.setBackgroundResource(R.drawable.normal)
+            imageView.setBackgroundResource(R.drawable.overweight)
             bmiStatus = "Overweight"
         }
-        else if (bmi > 30)
-            bmiStatus = "Obese"
+        else if (bmi > 30){
+            imageView.setBackgroundResource(R.drawable.obese)
+            bmiStatus = "Obese"}
         return bmiStatus
     }
 }

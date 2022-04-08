@@ -35,10 +35,10 @@ class MainActivity : AppCompatActivity() {
         radioCm = findViewById(R.id.radioCm)
         radioInch = findViewById(R.id.radioInch)
         radioMt = findViewById(R.id.radioMt)
-        heightText = findViewById(R.id.tvHeight);
+        heightText = findViewById(R.id.tvHeight)
 
 
-        var checkedId = R.id.radioMt
+        var checkedId: Int
 
         radioGroup.setOnCheckedChangeListener(object : RadioGroup.OnCheckedChangeListener {
             override fun onCheckedChanged(p0: RadioGroup?, p1: Int) {
@@ -49,8 +49,7 @@ class MainActivity : AppCompatActivity() {
 
         })
 
-
-
+        Toast.makeText(this,"Fill the details", Toast.LENGTH_SHORT).show()
 
         btnCalculate.setOnClickListener {
 
@@ -77,25 +76,25 @@ class MainActivity : AppCompatActivity() {
     private fun findConversionVal(checkedId: Int): Int {
 
         if (checkedId == R.id.radioCm){
-            heightText.text = getString(R.string.Height_cm);
+            heightText.text = getString(R.string.Height_cm)
             return 0
         }else if (checkedId == R.id.radioInch){
-            heightText.text = getString(R.string.Height_in);
+            heightText.text = getString(R.string.Height_in)
             return 1
         }
-        heightText.text = getString(R.string.Height_mt);
+        heightText.text = getString(R.string.Height_mt)
         return 2
     }
 
     private fun findConversionMultiplier(conversionVal : Int, actualHeight : Float)  : Float{
 
-        var absoluteHeight = actualHeight
+        val absoluteHeight: Float
 
         if (conversionVal == 0){
 
             //cm
 
-            absoluteHeight = actualHeight / 100;
+            absoluteHeight = actualHeight / 100
 
 
         }else if (conversionVal == 1){
