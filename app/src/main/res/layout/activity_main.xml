@@ -86,30 +86,30 @@
         android:id="@+id/radioGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_marginTop="5dp"
-        android:orientation="horizontal"
-        android:layout_gravity="center">
+        android:orientation="horizontal">
 
         <RadioButton
             android:id="@+id/radioCm"
             android:layout_width="wrap_content"
-            android:layout_marginHorizontal="5dp"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="5dp"
             android:text="Cm" />
 
         <RadioButton
             android:id="@+id/radioInch"
-            android:layout_marginHorizontal="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="5dp"
             android:text="Inch" />
 
         <RadioButton
             android:id="@+id/radioMt"
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginHorizontal="5dp"
             android:checked="true"
-            android:layout_height="wrap_content"
             android:text="Meter" />
 
     </RadioGroup>

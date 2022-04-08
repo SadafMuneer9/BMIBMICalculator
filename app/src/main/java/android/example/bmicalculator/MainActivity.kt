@@ -49,13 +49,13 @@ class MainActivity : AppCompatActivity() {
 
         })
 
-        Toast.makeText(this,"Fill the details", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "Fill the details", Toast.LENGTH_SHORT).show()
 
         btnCalculate.setOnClickListener {
 
             val heightInFloat = height.text.toString().toFloat()
 
-            val finalHeight = findConversionMultiplier(conversionVal , heightInFloat)
+            val finalHeight = findConversionMultiplier(conversionVal, heightInFloat)
 
 
             //formula in meters
@@ -75,10 +75,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun findConversionVal(checkedId: Int): Int {
 
-        if (checkedId == R.id.radioCm){
+        if (checkedId == R.id.radioCm) {
             heightText.text = getString(R.string.Height_cm)
             return 0
-        }else if (checkedId == R.id.radioInch){
+        } else if (checkedId == R.id.radioInch) {
             heightText.text = getString(R.string.Height_in)
             return 1
         }
@@ -86,24 +86,24 @@ class MainActivity : AppCompatActivity() {
         return 2
     }
 
-    private fun findConversionMultiplier(conversionVal : Int, actualHeight : Float)  : Float{
+    private fun findConversionMultiplier(conversionVal: Int, actualHeight: Float): Float {
 
         val absoluteHeight: Float
 
-        if (conversionVal == 0){
+        if (conversionVal == 0) {
 
             //cm
 
             absoluteHeight = actualHeight / 100
 
 
-        }else if (conversionVal == 1){
+        } else if (conversionVal == 1) {
 
             //inch
 
             absoluteHeight = (actualHeight / 39.37).toFloat()
 
-        }else{
+        } else {
             absoluteHeight = actualHeight
         }
 

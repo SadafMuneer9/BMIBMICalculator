@@ -42,22 +42,21 @@ class OutputScreen : AppCompatActivity() {
         }
 
     }
+
     private fun bmiStatusValue(bmi: Float): String {
         if (bmi < 18.5) {
             imageView.setBackgroundResource(R.drawable.underweight)
             bmiStatus = "Underweight"
-        }
-        else if (bmi >= 18.5 && bmi < 25){
+        } else if (bmi >= 18.5 && bmi < 25) {
             imageView.setBackgroundResource(R.drawable.normal)
             bmiStatus = "Normal"
-        }
-        else if (bmi >= 25 && bmi < 30) {
+        } else if (bmi >= 25 && bmi < 30) {
             imageView.setBackgroundResource(R.drawable.overweight)
             bmiStatus = "Overweight"
-        }
-        else if (bmi > 30){
+        } else if (bmi > 30) {
             imageView.setBackgroundResource(R.drawable.obese)
-            bmiStatus = "Obese"}
+            bmiStatus = "Obese"
+        }
         return bmiStatus
     }
 }
