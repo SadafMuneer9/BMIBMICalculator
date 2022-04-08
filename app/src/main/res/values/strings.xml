@@ -27,4 +27,6 @@
     <string name="in">in</string>
     <string name="Cm">cm</string>
     <string name="Height_cm">Height (Cm)</string>
+    <string name="Height_in">Height (In)</string>
+    <string name="Height_mt">Height (Mt)</string>
 </resources>

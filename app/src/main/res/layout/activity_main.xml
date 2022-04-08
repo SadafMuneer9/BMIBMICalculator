@@ -66,7 +66,7 @@
         android:layout_marginHorizontal="20dp"
         android:layout_marginVertical="15dp"
         android:gravity="center"
-        android:text="@string/Height_cm"
+        android:text="@string/Height_mt"
         android:textColor="@color/card_background"
         android:textSize="20sp"
         android:textStyle="bold" />
@@ -93,14 +93,24 @@
         <RadioButton
             android:id="@+id/radioCm"
             android:layout_width="wrap_content"
+            android:layout_marginHorizontal="5dp"
             android:layout_height="wrap_content"
             android:text="Cm" />
 
         <RadioButton
             android:id="@+id/radioInch"
+            android:layout_marginHorizontal="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Inch" />
+
+        <RadioButton
+            android:id="@+id/radioMt"
+            android:layout_width="wrap_content"
+            android:layout_marginHorizontal="5dp"
+            android:checked="true"
+            android:layout_height="wrap_content"
+            android:text="Meter" />
 
     </RadioGroup>
 
