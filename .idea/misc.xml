@@ -5,11 +5,13 @@
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.25104166666666666" />
         <entry key="app/src/main/res/drawable/btn_bg.xml" value="0.13" />
+        <entry key="app/src/main/res/drawable/custom_button.xml" value="0.207" />
+        <entry key="app/src/main/res/drawable/custombutton.xml" value="0.1195" />
         <entry key="app/src/main/res/drawable/edit_bg.xml" value="0.13" />
         <entry key="app/src/main/res/drawable/ic_baseline_calculate_24.xml" value="0.1585" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_output_screen.xml" value="0.24375" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.23854166666666668" />
+        <entry key="app/src/main/res/layout/activity_output_screen.xml" value="0.18055555555555555" />
         <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.1" />
       </map>
     </option>

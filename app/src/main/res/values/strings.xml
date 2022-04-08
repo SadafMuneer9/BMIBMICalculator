@@ -18,4 +18,13 @@
     <string name="Calculate">Calculate</string>
     <string name="result">Result</string>
     <string name="recalculate">Recalculate</string>
+    <string name="please_enter_your_name">Please Enter Your Name</string>
+    <string name="your_weight_in_kg">Your Weight in Kg</string>
+    <string name="hey">Hey,</string>
+    <string name="your_bmi_is">Your BMI is</string>
+    <string name="bmi_info">BMI INFO</string>
+    <string name="enter_Your_weight">Enter your weight</string>
+    <string name="in">in</string>
+    <string name="Cm">cm</string>
+    <string name="Height_cm">Height (Cm)</string>
 </resources>
