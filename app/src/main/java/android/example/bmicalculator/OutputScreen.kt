@@ -17,6 +17,8 @@ class OutputScreen : AppCompatActivity() {
     private lateinit var imageView: ImageView
     private lateinit var saveBtn: Button
     private lateinit var ViewBtn: Button
+    private val bmiList = ArrayList<BMI>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_output_screen)
@@ -44,14 +46,19 @@ class OutputScreen : AppCompatActivity() {
         }
 
         saveBtn.setOnClickListener{
-            MainActivity.listBmi.add(createBmiUser(intent.getStringExtra("userName")?:"Null",intent.getFloatExtra("userBMI", 0f),bmiStatusValue(Bmi)))
+            val bmi = createBmiUser(intent.getStringExtra("userName")?:"Null",intent.getFloatExtra("userBMI", 0f),bmiStatusValue(Bmi))
+            bmiList.add(bmi)
+
         }
+
         ViewBtn.setOnClickListener {
             val intent = Intent(this, SavedBmiInfo::class.java)
 
+            val bundle = Bundle()
+            bundle.putParcelableArrayList("bmiList", bmiList)
+            intent.putExtras(bundle)
             startActivity(intent)
         }
-        val listBmi =ArrayList<BMI>()
 
     }
     private fun createBmiUser(name: String, bmi: Float, bodyType: String): BMI {

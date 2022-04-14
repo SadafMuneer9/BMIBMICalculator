@@ -7,7 +7,7 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import kotlin.math.roundToInt
 
-class MainActivity : AppCompatActivity(), BmiListAdapter.BmiItemClicked {
+class MainActivity : AppCompatActivity() {
 
     private lateinit var btnCalculate: Button
     private lateinit var height: EditText
@@ -158,10 +158,6 @@ class MainActivity : AppCompatActivity(), BmiListAdapter.BmiItemClicked {
     private fun getSavedRadioButtonState(): Int {
         val preference = getSharedPreferences("pref", Context.MODE_PRIVATE)
         return preference.getInt("radioButtonState", 2)
-    }
-
-    override fun onItemClicked(item: BMI) {
-        Toast.makeText(this, "clicked item is $item", Toast.LENGTH_SHORT).show()
     }
 
 }

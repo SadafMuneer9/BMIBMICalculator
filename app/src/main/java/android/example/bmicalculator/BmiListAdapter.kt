@@ -1,6 +1,5 @@
 package android.example.bmicalculator
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,29 +8,32 @@ import androidx.recyclerview.widget.RecyclerView
 
 class BmiListAdapter(
     private val items: ArrayList<BMI>,
-    private val listener:BmiItemClicked,
-): RecyclerView.Adapter<BmiListAdapter.BmiViewHolder>() {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BmiViewHolder {
-        val view= LayoutInflater.from(parent.context).inflate(R.layout.item_bmi,parent,false)
-        val viewHolder=BmiViewHolder(view)
-        view.setOnClickListener{
-            listener.onItemClicked(items[viewHolder.adapterPosition])
 
-        }
-        return viewHolder
+) : RecyclerView.Adapter<BmiViewHolder>() {
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BmiViewHolder {
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.activity_saved_bmi_info, parent, false)
+
+        return BmiViewHolder(view)
     }
+
     override fun getItemCount(): Int {
         return items.size
     }
+
     override fun onBindViewHolder(holder: BmiViewHolder, position: Int) {
         val currentItem = items[position]
-        holder.titleView.text = currentItem.toString()
+
+        holder.bmi.text = currentItem.bmi.toString()
+        holder.name.text = currentItem.name
+        holder.bodyType.text = currentItem.bodyType
 
     }
-    class BmiViewHolder(itemView: View) :RecyclerView.ViewHolder(itemView) {
-        val titleView: TextView = itemView.findViewById(R.id.title)
-        }
-    interface BmiItemClicked {
+}
 
-        fun onItemClicked(item: BMI)
-    }}
+class BmiViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    val bmi: TextView = itemView.findViewById(R.id.bmiText)
+    val name: TextView = itemView.findViewById(R.id.name)
+    val bodyType: TextView = itemView.findViewById(R.id.bodyType)
+}
