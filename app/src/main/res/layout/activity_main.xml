@@ -124,8 +124,8 @@
         android:text="@string/calculate" />
 
     <ImageView
-        android:layout_width="299dp"
-        android:layout_height="195dp"
+        android:layout_width="226dp"
+        android:layout_height="143dp"
         android:layout_gravity="center"
         android:layout_marginTop="15dp"
         android:src="@drawable/bmi" />

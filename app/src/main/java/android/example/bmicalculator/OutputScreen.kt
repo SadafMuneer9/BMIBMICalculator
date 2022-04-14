@@ -6,7 +6,6 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import org.w3c.dom.Text
 
 class OutputScreen : AppCompatActivity() {
 
@@ -16,7 +15,8 @@ class OutputScreen : AppCompatActivity() {
     private lateinit var bmiStatus: String
     private lateinit var bmiInfo: TextView
     private lateinit var imageView: ImageView
-
+    private lateinit var saveBtn: Button
+    private lateinit var ViewBtn: Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_output_screen)
@@ -26,6 +26,8 @@ class OutputScreen : AppCompatActivity() {
         reCalculate = findViewById(R.id.reCalculate)
         bmiInfo = findViewById(R.id.bmiInfo)
         imageView = findViewById(R.id.bodyTypeImage)
+        saveBtn = findViewById(R.id.saveBtn)
+        ViewBtn=findViewById(R.id.ViewBtn)
 
 
         val intent = intent
@@ -41,6 +43,19 @@ class OutputScreen : AppCompatActivity() {
             startActivity(intent)
         }
 
+        saveBtn.setOnClickListener{
+            MainActivity.listBmi.add(createBmiUser(intent.getStringExtra("userName")?:"Null",intent.getFloatExtra("userBMI", 0f),bmiStatusValue(Bmi)))
+        }
+        ViewBtn.setOnClickListener {
+            val intent = Intent(this, SavedBmiInfo::class.java)
+
+            startActivity(intent)
+        }
+        val listBmi =ArrayList<BMI>()
+
+    }
+    private fun createBmiUser(name: String, bmi: Float, bodyType: String): BMI {
+        return BMI(name, bmi, bodyType);
     }
 
     private fun bmiStatusValue(bmi: Float): String {

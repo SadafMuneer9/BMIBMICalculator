@@ -10,9 +10,16 @@
         <entry key="app/src/main/res/drawable/edit_bg.xml" value="0.13" />
         <entry key="app/src/main/res/drawable/ic_baseline_calculate_24.xml" value="0.1585" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_class_data.xml" value="0.22447916666666667" />
+        <entry key="app/src/main/res/layout/activity_item_adapter.xml" value="0.23854166666666668" />
+        <entry key="app/src/main/res/layout/activity_list_adapter.xml" value="0.23854166666666668" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.23854166666666668" />
-        <entry key="app/src/main/res/layout/activity_output_screen.xml" value="0.23487179487179488" />
+        <entry key="app/src/main/res/layout/activity_output_screen.xml" value="0.1574074074074074" />
+        <entry key="app/src/main/res/layout/activity_saved_bmi.xml" value="0.23854166666666668" />
+        <entry key="app/src/main/res/layout/activity_saved_bmi_info.xml" value="0.22447916666666667" />
         <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/item_bmi.xml" value="0.23854166666666668" />
+        <entry key="app/src/main/res/layout/layout_single_list.xml" value="0.23854166666666668" />
       </map>
     </option>
   </component>

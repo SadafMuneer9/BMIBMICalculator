@@ -1,13 +1,13 @@
 package android.example.bmicalculator
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import org.w3c.dom.Text
 import kotlin.math.roundToInt
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), BmiListAdapter.BmiItemClicked {
 
     private lateinit var btnCalculate: Button
     private lateinit var height: EditText
@@ -18,7 +18,11 @@ class MainActivity : AppCompatActivity() {
     private lateinit var radioCm: RadioButton
     private lateinit var radioInch: RadioButton
     private lateinit var radioMt: RadioButton
-    private var conversionVal = 2;   // 0 = CM , 1 = inch , 2= Mt
+    private var conversionVal = 2  // 0 = CM , 1 = inch , 2= Mt
+
+    companion object {
+        val listBmi = ArrayList<BMI>()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,22 +41,27 @@ class MainActivity : AppCompatActivity() {
         radioMt = findViewById(R.id.radioMt)
         heightText = findViewById(R.id.tvHeight)
 
-
         var checkedId: Int
 
+        val savedRadioButtonState = getSavedRadioButtonState()
+        setRadioCheckedState(savedRadioButtonState)
         radioGroup.setOnCheckedChangeListener(object : RadioGroup.OnCheckedChangeListener {
             override fun onCheckedChanged(p0: RadioGroup?, p1: Int) {
 
                 checkedId = radioGroup.checkedRadioButtonId
                 conversionVal = findConversionVal(checkedId)
+                saveRadioButtonState(conversionVal)
             }
-
         })
 
         Toast.makeText(this, "Fill the details", Toast.LENGTH_SHORT).show()
 
         btnCalculate.setOnClickListener {
 
+            if (name.text.isNullOrEmpty() || weight.text.isNullOrEmpty() || height.text.isNullOrEmpty()) {
+                Toast.makeText(this, "Fill the details", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
             val heightInFloat = height.text.toString().toFloat()
 
             val finalHeight = findConversionMultiplier(conversionVal, heightInFloat)
@@ -71,6 +80,20 @@ class MainActivity : AppCompatActivity() {
 
             moveToOutPutScreen(name.text.toString(), roundoff.toFloat())
         }
+    }
+
+    private fun setRadioCheckedState(savedState: Int) {
+        if (savedState == 0) {
+            radioCm.isChecked = true
+            findConversionVal(R.id.radioCm)
+        } else if (savedState == 1) {
+            radioInch.isChecked = true
+            findConversionVal(R.id.radioInch)
+        } else {
+            radioMt.isChecked = true
+            findConversionVal(R.id.radioMt)
+        }
+
     }
 
     private fun findConversionVal(checkedId: Int): Int {
@@ -107,7 +130,7 @@ class MainActivity : AppCompatActivity() {
             absoluteHeight = actualHeight
         }
 
-        return absoluteHeight;
+        return absoluteHeight
     }
 
     private fun moveToOutPutScreen(name: String, bmi: Float) {
@@ -121,5 +144,24 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    override fun onResume() {
+        super.onResume()
+        Toast.makeText(this, listBmi.toString(), Toast.LENGTH_SHORT).show()
+    }
+
+    private fun saveRadioButtonState(radioButton: Int) {
+        val preference = getSharedPreferences("pref", Context.MODE_PRIVATE)
+        val editor = preference.edit()
+        editor.putInt("radioButtonState", radioButton).apply()
+    }
+
+    private fun getSavedRadioButtonState(): Int {
+        val preference = getSharedPreferences("pref", Context.MODE_PRIVATE)
+        return preference.getInt("radioButtonState", 2)
+    }
+
+    override fun onItemClicked(item: BMI) {
+        Toast.makeText(this, "clicked item is $item", Toast.LENGTH_SHORT).show()
+    }
 
 }
