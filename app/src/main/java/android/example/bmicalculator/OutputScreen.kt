@@ -36,9 +36,9 @@ class OutputScreen : AppCompatActivity() {
 
         name.text = intent.getStringExtra("userName")
         val Bmi = intent.getFloatExtra("userBMI", 0f)
-        bmi.text = Bmi.toString()
+        bmi.text = Bmi.toString() //actual bmi value
 
-        bmiInfo.text = bmiStatusValue(Bmi)
+        bmiInfo.text = bmiStatusValue(Bmi) //body type
 
         reCalculate.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)

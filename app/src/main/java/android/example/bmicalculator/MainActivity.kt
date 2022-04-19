@@ -3,8 +3,11 @@ package android.example.bmicalculator
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.messaging.FirebaseMessaging
 import kotlin.math.roundToInt
 
 class MainActivity : AppCompatActivity() {
@@ -54,12 +57,10 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-        Toast.makeText(this, "Fill the details", Toast.LENGTH_SHORT).show()
 
         btnCalculate.setOnClickListener {
 
             if (name.text.isNullOrEmpty() || weight.text.isNullOrEmpty() || height.text.isNullOrEmpty()) {
-                Toast.makeText(this, "Fill the details", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
             val heightInFloat = height.text.toString().toFloat()
@@ -78,8 +79,19 @@ class MainActivity : AppCompatActivity() {
 
             Toast.makeText(this, "Calculated BMI $BMI", Toast.LENGTH_SHORT).show()
 
-            moveToOutPutScreen(name.text.toString(), roundoff.toFloat())
+           moveToOutPutScreen(name.text.toString(), bmi=BMI)
         }
+        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
+            if (!task.isSuccessful) {
+                Log.w(MainActivity.toString(), "Fetching FCM registration token failed", task.exception)
+                return@OnCompleteListener
+            }
+            // Get new FCM registration token
+            val token = task.result
+
+            // Log and toast
+            Toast.makeText(this, token, Toast.LENGTH_SHORT).show()
+        })
     }
 
     private fun setRadioCheckedState(savedState: Int) {
@@ -141,7 +153,7 @@ class MainActivity : AppCompatActivity() {
         intent.putExtra("userBMI", bmi)
         intent.putExtra("bmiStatusValue", bmi)
         startActivity(intent)
-
+        Toast.makeText(this,bmi.toString(),Toast.LENGTH_SHORT).show()
     }
 
     override fun onResume() {

@@ -18,7 +18,7 @@
 
   <TextView
       android:id="@+id/name"
-      tools:text="Shivam"
+      tools:text="Sadaf"
       android:textSize="24dp"
       android:layout_marginLeft="16dp"
       android:layout_toRightOf="@id/bmiText"
@@ -27,7 +27,7 @@
 
   <TextView
       android:id="@+id/bodyType"
-      tools:text="Obsese"
+      tools:text="Normal"
       android:textSize="24dp"
       android:layout_marginRight="8dp"
       android:layout_alignParentEnd="true"

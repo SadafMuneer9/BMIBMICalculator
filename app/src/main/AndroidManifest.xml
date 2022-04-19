@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="android.example.bmicalculator" >
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -14,18 +16,6 @@
             android:exported="false" />
         <activity
             android:name=".BmiListAdapter"
-            android:exported="false" />
-        <activity
-            android:name=".ListAdapter"
-            android:exported="false" />
-        <activity
-            android:name=".listAdapter"
-            android:exported="false" />
-        <activity
-            android:name=".classData"
-            android:exported="false" />
-        <activity
-            android:name=".MyData"
             android:exported="false" />
         <activity
             android:name=".SplashScreenActivity"
@@ -42,6 +32,13 @@
         <activity
             android:name=".OutputScreen"
             android:exported="false" />
+        <service
+            android:name=".MyFirebaseMsg"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>
