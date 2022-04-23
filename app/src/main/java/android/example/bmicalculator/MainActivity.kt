@@ -47,7 +47,8 @@ class MainActivity : AppCompatActivity() {
         var checkedId: Int
 
         val savedRadioButtonState = getSavedRadioButtonState()
-        setRadioCheckedState(savedRadioButtonState)
+        conversionVal = setRadioCheckedState(savedRadioButtonState)
+
         radioGroup.setOnCheckedChangeListener(object : RadioGroup.OnCheckedChangeListener {
             override fun onCheckedChanged(p0: RadioGroup?, p1: Int) {
 
@@ -79,7 +80,7 @@ class MainActivity : AppCompatActivity() {
 
             Toast.makeText(this, "Calculated BMI $BMI", Toast.LENGTH_SHORT).show()
 
-           moveToOutPutScreen(name.text.toString(), bmi=BMI)
+           moveToOutPutScreen(name.text.toString(), bmi = roundoff.toFloat())
         }
         FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
             if (!task.isSuccessful) {
@@ -94,16 +95,16 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    private fun setRadioCheckedState(savedState: Int) {
+    private fun setRadioCheckedState(savedState: Int) : Int {
         if (savedState == 0) {
             radioCm.isChecked = true
-            findConversionVal(R.id.radioCm)
+            return findConversionVal(R.id.radioCm)
         } else if (savedState == 1) {
             radioInch.isChecked = true
-            findConversionVal(R.id.radioInch)
+            return findConversionVal(R.id.radioInch)
         } else {
             radioMt.isChecked = true
-            findConversionVal(R.id.radioMt)
+            return findConversionVal(R.id.radioMt)
         }
 
     }
