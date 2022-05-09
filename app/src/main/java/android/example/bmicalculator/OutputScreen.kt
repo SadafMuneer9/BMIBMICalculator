@@ -6,6 +6,8 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.moe.pushlibrary.MoEHelper
+import com.moengage.core.Properties
 
 class OutputScreen : AppCompatActivity() {
 
@@ -17,6 +19,7 @@ class OutputScreen : AppCompatActivity() {
     private lateinit var imageView: ImageView
     private lateinit var saveBtn: Button
     private lateinit var ViewBtn: Button
+    private lateinit var logoutBtn: Button
     private val bmiList = ArrayList<BMI>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,8 +32,8 @@ class OutputScreen : AppCompatActivity() {
         bmiInfo = findViewById(R.id.bmiInfo)
         imageView = findViewById(R.id.bodyTypeImage)
         saveBtn = findViewById(R.id.saveBtn)
-        ViewBtn=findViewById(R.id.ViewBtn)
-
+        ViewBtn = findViewById(R.id.ViewBtn)
+        logoutBtn = findViewById(R.id.logoutBtn)
 
         val intent = intent
 
@@ -39,14 +42,19 @@ class OutputScreen : AppCompatActivity() {
         bmi.text = Bmi.toString() //actual bmi value
 
         bmiInfo.text = bmiStatusValue(Bmi) //body type
-
+        trackUserData()
+        trackEvent()
         reCalculate.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
 
-        saveBtn.setOnClickListener{
-            val bmi = createBmiUser(intent.getStringExtra("userName")?:"Null",intent.getFloatExtra("userBMI", 0f),bmiStatusValue(Bmi))
+        saveBtn.setOnClickListener {
+            val bmi = createBmiUser(
+                intent.getStringExtra("userName") ?: "Null",
+                intent.getFloatExtra("userBMI", 0f),
+                bmiStatusValue(Bmi)
+            )
             bmiList.add(bmi)
 
         }
@@ -60,9 +68,31 @@ class OutputScreen : AppCompatActivity() {
             startActivity(intent)
         }
 
+        logoutBtn.setOnClickListener {
+
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
+
+    private fun trackUserData() {
+        MoEHelper.getInstance(this).setUniqueId("MyDevice")
+        MoEHelper.getInstance(this).setFirstName("")
+        MoEHelper.getInstance(this).setEmail("")
+
+    }
+
+    private fun trackEvent() {
+        val properties = Properties()
+        properties.addAttribute("username", "sadaf")
+            .addAttribute("bmi", "bmiStatusValue")
+            .setNonInteractive()
+        MoEHelper.getInstance(this).trackEvent("BMI", properties)
+    }
+
     private fun createBmiUser(name: String, bmi: Float, bodyType: String): BMI {
-        return BMI(name, bmi, bodyType);
+        return BMI(name, bmi, bodyType)
     }
 
     private fun bmiStatusValue(bmi: Float): String {

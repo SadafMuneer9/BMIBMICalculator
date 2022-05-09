@@ -8,7 +8,10 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.messaging.FirebaseMessaging
+import com.moe.pushlibrary.MoEHelper
+import com.moengage.core.Properties
 import kotlin.math.roundToInt
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -47,17 +50,12 @@ class MainActivity : AppCompatActivity() {
         var checkedId: Int
 
         val savedRadioButtonState = getSavedRadioButtonState()
-        conversionVal = setRadioCheckedState(savedRadioButtonState)
-
-        radioGroup.setOnCheckedChangeListener(object : RadioGroup.OnCheckedChangeListener {
-            override fun onCheckedChanged(p0: RadioGroup?, p1: Int) {
-
-                checkedId = radioGroup.checkedRadioButtonId
-                conversionVal = findConversionVal(checkedId)
-                saveRadioButtonState(conversionVal)
-            }
-        })
-
+        setRadioCheckedState(savedRadioButtonState)
+        radioGroup.setOnCheckedChangeListener { p0, p1 ->
+            checkedId = radioGroup.checkedRadioButtonId
+            conversionVal = findConversionVal(checkedId)
+            saveRadioButtonState(conversionVal)
+        }
 
         btnCalculate.setOnClickListener {
 
@@ -80,11 +78,17 @@ class MainActivity : AppCompatActivity() {
 
             Toast.makeText(this, "Calculated BMI $BMI", Toast.LENGTH_SHORT).show()
 
-           moveToOutPutScreen(name.text.toString(), bmi = roundoff.toFloat())
+            moveToOutPutScreen(name.text.toString(), bmi = BMI)
+
         }
+
         FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
             if (!task.isSuccessful) {
-                Log.w(MainActivity.toString(), "Fetching FCM registration token failed", task.exception)
+                Log.w(
+                    MainActivity.toString(),
+                    "Fetching FCM registration token failed",
+                    task.exception
+                )
                 return@OnCompleteListener
             }
             // Get new FCM registration token
@@ -95,16 +99,16 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    private fun setRadioCheckedState(savedState: Int) : Int {
+    private fun setRadioCheckedState(savedState: Int) {
         if (savedState == 0) {
             radioCm.isChecked = true
-            return findConversionVal(R.id.radioCm)
+            findConversionVal(R.id.radioCm)
         } else if (savedState == 1) {
             radioInch.isChecked = true
-            return findConversionVal(R.id.radioInch)
+            findConversionVal(R.id.radioInch)
         } else {
             radioMt.isChecked = true
-            return findConversionVal(R.id.radioMt)
+            findConversionVal(R.id.radioMt)
         }
 
     }
@@ -153,8 +157,15 @@ class MainActivity : AppCompatActivity() {
         intent.putExtra("userName", name)
         intent.putExtra("userBMI", bmi)
         intent.putExtra("bmiStatusValue", bmi)
+
+        val properties = Properties()
+        properties.addAttribute("userName", name)
+        properties.addAttribute("userBMI", bmi)
+
+        MoEHelper.getInstance(this).trackEvent("calculatedBmi", properties)
+
         startActivity(intent)
-        Toast.makeText(this,bmi.toString(),Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, bmi.toString(), Toast.LENGTH_SHORT).show()
     }
 
     override fun onResume() {
@@ -172,5 +183,7 @@ class MainActivity : AppCompatActivity() {
         val preference = getSharedPreferences("pref", Context.MODE_PRIVATE)
         return preference.getInt("radioButtonState", 2)
     }
-
 }
+
+
+
