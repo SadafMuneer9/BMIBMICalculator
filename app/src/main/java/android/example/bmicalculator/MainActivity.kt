@@ -10,6 +10,7 @@ import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.messaging.FirebaseMessaging
 import com.moe.pushlibrary.MoEHelper
 import com.moengage.core.Properties
+import com.moengage.inapp.MoEInAppHelper
 import kotlin.math.roundToInt
 
 
@@ -49,6 +50,7 @@ class MainActivity : AppCompatActivity() {
 
         var checkedId: Int
 
+
         val savedRadioButtonState = getSavedRadioButtonState()
         setRadioCheckedState(savedRadioButtonState)
         radioGroup.setOnCheckedChangeListener { p0, p1 ->
@@ -58,7 +60,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         btnCalculate.setOnClickListener {
-
+            MoEInAppHelper.getInstance().showInApp(this)
             if (name.text.isNullOrEmpty() || weight.text.isNullOrEmpty() || height.text.isNullOrEmpty()) {
                 return@setOnClickListener
             }
@@ -79,6 +81,7 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, "Calculated BMI $BMI", Toast.LENGTH_SHORT).show()
 
             moveToOutPutScreen(name.text.toString(), bmi = BMI)
+
 
         }
 

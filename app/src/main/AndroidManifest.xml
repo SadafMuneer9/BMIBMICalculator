@@ -38,12 +38,16 @@
             android:exported="true" />
 
         <service
-            android:name="com.moengage.firebase.MoEFireBaseMessagingService"
+            android:name=".MyFirebaseMsg"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+        <activity
+            android:name="com.moe.pushlibrary.activities.MoEActivity"
+            android:label="[MainActivity]"
+            android:parentActivityName=".MainActivity" />
     </application>
 
 </manifest>

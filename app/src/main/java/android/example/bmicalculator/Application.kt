@@ -1,7 +1,12 @@
 package android.example.bmicalculator
 
 import android.app.Application
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.content.Context
+import android.media.AudioAttributes
+import android.net.Uri
+import android.os.Build
 import android.util.Log
 import com.moe.pushlibrary.MoEHelper
 import com.moengage.core.LogLevel
@@ -9,6 +14,7 @@ import com.moengage.core.MoEngage
 import com.moengage.core.config.LogConfig
 import com.moengage.core.config.NotificationConfig
 import com.moengage.core.model.AppStatus
+import com.moengage.pushbase.MoEPushHelper
 
 class Application : Application() {
     override fun onCreate() {
@@ -18,18 +24,19 @@ class Application : Application() {
             .configureNotificationMetaData(
                 NotificationConfig(
                     smallIcon = R.drawable.ic_baseline_email_24,
-                    largeIcon = R.drawable.ic_baseline_email_24,
+                    largeIcon = R.drawable.bmi,
                     notificationColor = R.color.black,
                     isLargeIconDisplayEnabled = true,
-                    tone = null,
+                    tone= "tone_new",
                     isMultipleNotificationInDrawerEnabled = true,
                     isBuildingBackStackEnabled = true
                 )
             )
             .build()
         MoEngage.initialise(moEngage)
-
+        MoEPushHelper.getInstance().messageListener = CustomPushMessageListener()
         trackInstallOrUpdate()
+        createNotificationChannel()
     }
 
     private fun trackInstallOrUpdate() {
@@ -54,6 +61,28 @@ class Application : Application() {
             preferences.edit().putInt(versionCode, BuildConfig.VERSION_CODE).apply()
             MoEHelper.getInstance(this).setAppStatus(AppStatus.UPDATE)
             Log.v("MoEngage", "App Updated")
+        }
+    }
+    private fun createNotificationChannel() {
+        val nm =
+            applicationContext.getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val channel = NotificationChannel(
+                "hello_world",
+                "my_channel",
+                NotificationManager.IMPORTANCE_HIGH
+            ).apply {
+                description = "Created by Vipin"
+                enableVibration(true)
+            }
+            val attributes = AudioAttributes.Builder()
+                .setUsage(AudioAttributes.USAGE_NOTIFICATION)
+                .build()
+            channel.setSound(
+                Uri.parse("android.resource://${packageName}/" + R.raw.tone_new),
+                attributes
+            )
+            nm.createNotificationChannel(channel)
         }
     }
 }

@@ -15,10 +15,12 @@ import com.moengage.core.model.AppStatus
 class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_login)
         val email = findViewById<View>(R.id.email) as TextView
         val password = findViewById<View>(R.id.password) as TextView
         val loginbtn = findViewById<View>(R.id.loginbtn) as Button
+
 
         loginbtn.setOnClickListener {
             if (android.util.Patterns.EMAIL_ADDRESS.matcher(email.text.toString())
@@ -30,6 +32,7 @@ class LoginActivity : AppCompatActivity() {
             } else {
                 Toast.makeText(this, "LOGIN FAILED!", Toast.LENGTH_SHORT).show()
             }
+
 
         }
     }
