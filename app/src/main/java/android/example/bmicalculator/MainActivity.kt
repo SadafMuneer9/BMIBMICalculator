@@ -164,8 +164,10 @@ class MainActivity : AppCompatActivity() {
         val properties = Properties()
         properties.addAttribute("userName", name)
         properties.addAttribute("userBMI", bmi)
+        properties.addAttribute("uniqueId","MyDevice")
 
         MoEHelper.getInstance(this).trackEvent("calculatedBmi", properties)
+        MoEHelper.getInstance(this).trackEvent("userName",properties)
 
         startActivity(intent)
         Toast.makeText(this, bmi.toString(), Toast.LENGTH_SHORT).show()
@@ -186,6 +188,7 @@ class MainActivity : AppCompatActivity() {
         val preference = getSharedPreferences("pref", Context.MODE_PRIVATE)
         return preference.getInt("radioButtonState", 2)
     }
+
 }
 
 

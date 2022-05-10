@@ -26,6 +26,9 @@ class LoginActivity : AppCompatActivity() {
             if (android.util.Patterns.EMAIL_ADDRESS.matcher(email.text.toString())
                     .matches() && (password.text.toString().isNotEmpty())
             ) {
+                saveEmail(email = email.text.toString())
+                MoEHelper.getInstance(this).setUniqueId(email.text.toString())
+
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
                 finish()
@@ -33,8 +36,14 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(this, "LOGIN FAILED!", Toast.LENGTH_SHORT).show()
             }
 
-
         }
+    }
+    private fun saveEmail(email:String){
+        val preference = getSharedPreferences("pref", Context.MODE_PRIVATE)
+        val editor=preference.edit()
+        editor.putString("userEmail",email)
+            .apply()
+
     }
 
 }

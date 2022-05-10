@@ -1,5 +1,6 @@
 package android.example.bmicalculator
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -42,8 +43,7 @@ class OutputScreen : AppCompatActivity() {
         bmi.text = Bmi.toString() //actual bmi value
 
         bmiInfo.text = bmiStatusValue(Bmi) //body type
-        trackUserData()
-        trackEvent()
+
         reCalculate.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
@@ -69,24 +69,23 @@ class OutputScreen : AppCompatActivity() {
         }
 
         logoutBtn.setOnClickListener {
-
+            MoEHelper.getInstance(this).logoutUser()
+            clearSharedPref()
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
             finish()
         }
     }
-
-    private fun trackUserData() {
-        MoEHelper.getInstance(this).setUniqueId("MyDevice")
-        MoEHelper.getInstance(this).setFirstName("")
-        MoEHelper.getInstance(this).setEmail("")
-
+    private fun clearSharedPref(){
+        val preference=getSharedPreferences("preferences", Context.MODE_PRIVATE)
+        val editor=preference.edit()
+        editor.clear()
+            .apply()
     }
 
     private fun trackEvent() {
         val properties = Properties()
-        properties.addAttribute("username", "sadaf")
-            .addAttribute("bmi", "bmiStatusValue")
+        properties.addAttribute("bmi", "bmiStatusValue")
             .setNonInteractive()
         MoEHelper.getInstance(this).trackEvent("BMI", properties)
     }
