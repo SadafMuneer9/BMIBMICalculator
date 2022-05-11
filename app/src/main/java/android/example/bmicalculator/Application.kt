@@ -14,6 +14,8 @@ import com.moengage.core.MoEngage
 import com.moengage.core.config.LogConfig
 import com.moengage.core.config.NotificationConfig
 import com.moengage.core.model.AppStatus
+import com.moengage.inapp.MoEInAppHelper
+import com.moengage.inapp.listeners.InAppMessageListener
 import com.moengage.pushbase.MoEPushHelper
 
 class Application : Application() {
@@ -35,6 +37,8 @@ class Application : Application() {
             .build()
         MoEngage.initialise(moEngage)
         MoEPushHelper.getInstance().messageListener = CustomPushMessageListener()
+        MoEInAppHelper.getInstance().addInAppLifeCycleListener(InAppLifeCycle())
+        MoEInAppHelper.getInstance().registerListener(android.example.bmicalculator.InAppMessageListener())
         trackInstallOrUpdate()
         createNotificationChannel()
     }

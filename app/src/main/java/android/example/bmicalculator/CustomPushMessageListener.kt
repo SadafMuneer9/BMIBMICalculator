@@ -9,28 +9,27 @@ import com.moengage.pushbase.push.PushMessageListener
 
 class CustomPushMessageListener : PushMessageListener() {
 
-//        override fun isNotificationRequired(context: Context, payload: Bundle): Boolean {
+//    override fun isNotificationRequired(context: Context, payload: Bundle): Boolean {
 //
-//            var shouldShowNotification = payload.getBoolean("shouldShowNotification")
+//        val shouldShowNotification = payload.getBoolean("shouldShowNotification")
 //
-//            return shouldShowNotification;
-//        }
+//        return shouldShowNotification;
+//    }
 
-    override fun onCreateNotification(
-        context: Context,
-        notificationPayload: NotificationPayload
-    ): NotificationCompat.Builder {
-        val isCustom=notificationPayload.payload.getBoolean("isCustom",false)
-        if(isCustom){
-            val builder=super.onCreateNotification(context, notificationPayload)
-            builder.setContentTitle("This is a custom notification")
-            return builder
-        }else
-            return super.onCreateNotification(context, notificationPayload)
-
-    }
-
+//    override fun onCreateNotification(
+//        context: Context,
+//        notificationPayload: NotificationPayload
+//    ): NotificationCompat.Builder {
+//        val isCustom = notificationPayload.payload.getBoolean("isCustom", false)
+//        if (isCustom) {
+//            val builder = super.onCreateNotification(context, notificationPayload)
+//            builder.setContentTitle("This is a custom notification")
+//            return builder
+//        } else
+//            return super.onCreateNotification(context, notificationPayload)
+//
+//    }
     override fun onHandleRedirection(activity: Activity, payload: Bundle) {
-       super.onHandleRedirection(activity, payload)
+        super.onHandleRedirection(activity, payload)
     }
 }
