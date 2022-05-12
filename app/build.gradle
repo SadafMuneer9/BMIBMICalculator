@@ -44,6 +44,7 @@ dependencies {
     implementation fileTree(dir: 'libs',includes: ['*.jar'])
     implementation 'androidx.core:core:1.7.0'
     implementation 'com.moengage:moe-android-sdk:11.5.00'
+    implementation("com.moengage:rich-notification:2.4.0")
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
