@@ -29,4 +29,5 @@
     <string name="Height_cm">Height (Cm)</string>
     <string name="Height_in">Height (In)</string>
     <string name="Height_mt">Height (Mt)</string>
+    <string name="moe_inbox_notification_title">[LABEL]</string>
 </resources>

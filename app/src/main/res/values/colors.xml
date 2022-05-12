@@ -15,4 +15,8 @@
     <color name="mycolor2">#213E4D</color>
     <color name="colorr">#9B9E6E</color>
     <color name="clrr">#6D9AA0</color>
+    <color name="moe_inbox_color_accent">#1C64D0</color>
+    <color name="moe_inbox_color_primary_dark">@color/moe_black</color>
+    <color name="moe_inbox_color_primary">@color/moe_white</color>
+    <color name="moe_inbox_control_color">@color/moe_black</color>
 </resources>

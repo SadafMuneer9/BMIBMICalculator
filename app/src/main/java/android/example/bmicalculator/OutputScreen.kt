@@ -8,7 +8,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.moe.pushlibrary.MoEHelper
+import com.moengage.cards.ui.CardActivity
 import com.moengage.core.Properties
+import com.moengage.inbox.ui.view.InboxActivity
 
 class OutputScreen : AppCompatActivity() {
 
@@ -21,6 +23,8 @@ class OutputScreen : AppCompatActivity() {
     private lateinit var saveBtn: Button
     private lateinit var ViewBtn: Button
     private lateinit var logoutBtn: Button
+    private lateinit var inboxBtn: Button
+    private lateinit var cardBtn: Button
     private val bmiList = ArrayList<BMI>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,6 +39,8 @@ class OutputScreen : AppCompatActivity() {
         saveBtn = findViewById(R.id.saveBtn)
         ViewBtn = findViewById(R.id.ViewBtn)
         logoutBtn = findViewById(R.id.logoutBtn)
+        inboxBtn = findViewById(R.id.inboxBtn)
+        cardBtn = findViewById(R.id.cardBtn)
 
         val intent = intent
 
@@ -65,6 +71,14 @@ class OutputScreen : AppCompatActivity() {
             val bundle = Bundle()
             bundle.putParcelableArrayList("bmiList", bmiList)
             intent.putExtras(bundle)
+            startActivity(intent)
+        }
+        inboxBtn.setOnClickListener{
+            val intent = Intent(this, InboxActivity::class.java)
+            startActivity(intent)
+        }
+        cardBtn.setOnClickListener{
+            val intent = Intent(this, CardActivity::class.java)
             startActivity(intent)
         }
 

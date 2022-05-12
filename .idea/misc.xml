@@ -13,7 +13,7 @@
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.23854166666666668" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_output_screen.xml" value="0.22685185185185186" />
+        <entry key="app/src/main/res/layout/activity_output_screen.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_saved_bmi.xml" value="0.24375" />
         <entry key="app/src/main/res/layout/activity_saved_bmi_info.xml" value="0.24375" />
         <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.1" />

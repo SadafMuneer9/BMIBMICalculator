@@ -16,6 +16,7 @@ import com.moengage.core.config.NotificationConfig
 import com.moengage.core.model.AppStatus
 import com.moengage.inapp.MoEInAppHelper
 import com.moengage.inapp.listeners.InAppMessageListener
+import com.moengage.inbox.core.MoEInboxHelper
 import com.moengage.pushbase.MoEPushHelper
 
 class Application : Application() {
@@ -39,6 +40,7 @@ class Application : Application() {
         MoEPushHelper.getInstance().messageListener = CustomPushMessageListener()
         MoEInAppHelper.getInstance().addInAppLifeCycleListener(InAppLifeCycle())
         MoEInAppHelper.getInstance().registerListener(android.example.bmicalculator.InAppMessageListener())
+        MoEInboxHelper.getInstance().getUnClickedMessagesCount(applicationContext)
         trackInstallOrUpdate()
         createNotificationChannel()
     }
