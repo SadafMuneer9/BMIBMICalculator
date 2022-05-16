@@ -6,6 +6,12 @@
     tools:context=".LoginActivity"
     android:background="@color/clrr">
 
+    <com.moengage.widgets.NudgeView
+        android:id="@+id/nudge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    </com.moengage.widgets.NudgeView>
+
     <TextView
         android:id="@+id/signin"
         android:layout_width="match_parent"

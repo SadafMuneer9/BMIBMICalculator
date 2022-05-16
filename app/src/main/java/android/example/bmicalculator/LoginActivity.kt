@@ -9,6 +9,9 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.moe.pushlibrary.MoEHelper
+import com.moengage.inapp.internal.model.Nudge
+import com.moengage.inapp.internal.model.Widget
+import com.moengage.widgets.NudgeView
 
 class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,7 +22,9 @@ class LoginActivity : AppCompatActivity() {
         val password = findViewById<View>(R.id.password) as TextView
         val loginbtn = findViewById<View>(R.id.loginbtn) as Button
 
-
+        val nudge = findViewById<NudgeView>(R.id.nudge)
+// initialize
+        nudge.initialiseNudgeView(this)
         loginbtn.setOnClickListener {
             if (android.util.Patterns.EMAIL_ADDRESS.matcher(email.text.toString())
                     .matches() && (password.text.toString().isNotEmpty())
@@ -35,6 +40,7 @@ class LoginActivity : AppCompatActivity() {
             }
 
         }
+
     }
     private fun saveEmail(email:String){
         val preference = getSharedPreferences("pref", Context.MODE_PRIVATE)

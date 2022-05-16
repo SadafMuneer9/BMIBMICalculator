@@ -11,6 +11,7 @@ import android.util.Log
 import com.moe.pushlibrary.MoEHelper
 import com.moengage.core.LogLevel
 import com.moengage.core.MoEngage
+import com.moengage.core.config.InAppConfig
 import com.moengage.core.config.LogConfig
 import com.moengage.core.config.NotificationConfig
 import com.moengage.core.model.AppStatus
@@ -34,13 +35,13 @@ class Application : Application() {
                     isMultipleNotificationInDrawerEnabled = true,
                     isBuildingBackStackEnabled = true
                 )
-            )
+            ).configureInApps(InAppConfig(true, emptySet()))
             .build()
         MoEngage.initialise(moEngage)
         MoEPushHelper.getInstance().messageListener = CustomPushMessageListener()
         MoEInAppHelper.getInstance().addInAppLifeCycleListener(InAppLifeCycle())
         MoEInAppHelper.getInstance().registerListener(android.example.bmicalculator.InAppMessageListener())
-        MoEInboxHelper.getInstance().getUnClickedMessagesCount(applicationContext)
+
         trackInstallOrUpdate()
         createNotificationChannel()
     }

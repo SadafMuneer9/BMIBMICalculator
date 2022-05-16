@@ -11,6 +11,7 @@ import com.google.firebase.messaging.FirebaseMessaging
 import com.moe.pushlibrary.MoEHelper
 import com.moengage.core.Properties
 import com.moengage.inapp.MoEInAppHelper
+import com.moengage.widgets.NudgeView
 import kotlin.math.roundToInt
 
 
@@ -47,9 +48,7 @@ class MainActivity : AppCompatActivity() {
         radioInch = findViewById(R.id.radioInch)
         radioMt = findViewById(R.id.radioMt)
         heightText = findViewById(R.id.tvHeight)
-
         var checkedId: Int
-
 
         val savedRadioButtonState = getSavedRadioButtonState()
         setRadioCheckedState(savedRadioButtonState)
@@ -174,6 +173,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+        MoEInAppHelper.getInstance().showInApp(this)
         Toast.makeText(this, listBmi.toString(), Toast.LENGTH_SHORT).show()
     }
 
