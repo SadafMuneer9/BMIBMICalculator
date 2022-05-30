@@ -11,13 +11,13 @@ import android.util.Log
 import com.moe.pushlibrary.MoEHelper
 import com.moengage.core.LogLevel
 import com.moengage.core.MoEngage
-import com.moengage.core.config.InAppConfig
-import com.moengage.core.config.LogConfig
-import com.moengage.core.config.NotificationConfig
+import com.moengage.core.config.*
 import com.moengage.core.model.AppStatus
 import com.moengage.inapp.MoEInAppHelper
 import com.moengage.inapp.listeners.InAppMessageListener
 import com.moengage.inbox.core.MoEInboxHelper
+import com.moengage.mi.MoEMiPushHelper
+import com.moengage.mi.listener.MiPushEventListener
 import com.moengage.pushbase.MoEPushHelper
 
 class Application : Application() {
@@ -36,11 +36,14 @@ class Application : Application() {
                     isBuildingBackStackEnabled = true
                 )
             ).configureInApps(InAppConfig(true, emptySet()))
+            .configureGeofence(GeofenceConfig(isGeofenceEnabled = true, isBackgroundSyncEnabled = true))
+            //.configureMiPush(MiPushConfig([appId], [appkey],[enableTokenRegistration]))
             .build()
         MoEngage.initialise(moEngage)
         MoEPushHelper.getInstance().messageListener = CustomPushMessageListener()
         MoEInAppHelper.getInstance().addInAppLifeCycleListener(InAppLifeCycle())
         MoEInAppHelper.getInstance().registerListener(android.example.bmicalculator.InAppMessageListener())
+        MoEMiPushHelper.getInstance().addEventListener(MiPushEventListener())
 
         trackInstallOrUpdate()
         createNotificationChannel()

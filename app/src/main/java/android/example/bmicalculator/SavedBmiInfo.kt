@@ -16,7 +16,6 @@ class SavedBmiInfo : AppCompatActivity() {
 
         val bmiList = intent.extras?.getParcelableArrayList<BMI>("bmiList")
 
-
         recyclerView = findViewById(R.id.recyclerView)
 
         val adapter = BmiListAdapter(bmiList as ArrayList<BMI>)
