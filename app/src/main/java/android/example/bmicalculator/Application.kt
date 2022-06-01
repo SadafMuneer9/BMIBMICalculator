@@ -38,6 +38,7 @@ class Application : Application() {
             ).configureInApps(InAppConfig(true, emptySet()))
             .configureGeofence(GeofenceConfig(isGeofenceEnabled = true, isBackgroundSyncEnabled = true))
             .configureMiPush(MiPushConfig("2882303761520338227","5712033879227",true))
+            .configurePushKit(PushKitConfig(true))
             .build()
         MoEngage.initialise(moEngage)
         MoEPushHelper.getInstance().messageListener = CustomPushMessageListener()
