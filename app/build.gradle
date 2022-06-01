@@ -5,6 +5,8 @@ plugins {
 }
 apply plugin: 'kotlin-parcelize'
 
+
+
 android {
     compileSdk 32
 
@@ -53,7 +55,16 @@ dependencies {
     annotationProcessor('com.github.bumptech.glide:glide:4.13.0')
     implementation("com.moengage:geofence:1.2.2")
     implementation 'com.google.android.gms:play-services-location:19.0.1'
+
+    //push amp+
     implementation("com.moengage:push-amp-plus:4.0.1")
+
+    //hms push kit
+    implementation("com.moengage:hms-pushkit:3.0.0")
+    implementation 'com.huawei.hms:push:6.5.0.300'
+    implementation('com.huawei.agconnect:agconnect-core:1.5.0.300')
+
+
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

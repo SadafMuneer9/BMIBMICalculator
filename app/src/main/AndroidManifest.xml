@@ -108,6 +108,13 @@
                 <action android:name="com.xiaomi.mipush.ERROR" />
             </intent-filter>
         </receiver>
+        <service
+            android:name="com.moengage.hms.pushkit.MoEPushKitMessageService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.huawei.push.action.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
 
         <activity
             android:name="com.moe.pushlibrary.activities.MoEActivity"
